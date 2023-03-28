@@ -23,7 +23,7 @@ const bulletins = [
     place: "Madrid",
     description: "Vamos a jugar juntos en Madrid"
   }
-]
+];
 
 mongoose
   .connect(process.env.MONGO_URL)

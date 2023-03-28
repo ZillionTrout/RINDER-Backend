@@ -21,4 +21,6 @@ const mpSchema = new Schema(
         timestamps: true
     });
 
-module.exports = model("messagePrivate", mpSchema);
+const MessagePrivate = model('MessagePrivate', mpSchema);
+
+module.exports = MessagePrivate;
