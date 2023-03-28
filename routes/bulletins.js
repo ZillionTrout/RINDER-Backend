@@ -20,7 +20,7 @@ router.get('/', async (req, res, next) => {
 router.get("/:bulletinId", async (req, res, next) => {
     const {bulletinId} = req.params;
     try {
-        const bulletin = await Project.findById(bulletinId);
+        const bulletin = await Bulletin.findById(bulletinId);
         res.status(200).json(bulletin);
     } catch (error) {
         console.error(error);

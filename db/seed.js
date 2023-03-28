@@ -1,6 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-mongoose.set('stricitQuery', false);
+mongoose.set('stricitQuery', true);
 const Bulletin = require("../models/Bulletin")
 
 // Import data to seed
