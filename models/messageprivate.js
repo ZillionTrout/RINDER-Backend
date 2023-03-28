@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const mpSchema = new messagePrivate(
+const mpSchema = new Schema(
     {
         userId: {
             type: Schema.Types.ObjectId,

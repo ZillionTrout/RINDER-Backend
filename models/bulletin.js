@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
-const bulletinSchema = new Bulletin (
+const bulletinSchema = new Schema (
     {
         userId: {
             type: Schema.Types.ObjectId,
@@ -9,16 +9,16 @@ const bulletinSchema = new Bulletin (
         },
         game: {
             type: String,
-            enum: [
-            //Lista de juegos
-            ]
+            // enum: [
+            // //Lista de juegos
+            // ]
         },
         Campaign: {
             type: [Schema.Types.ObjectId],
             ref: 'Game',
-            enum: [
-            //Lista de campañanas según el juego
-            ]
+            // enum: [
+            // //Lista de campañanas según el juego
+            // ]
         },
         Role: {
             type: String,

@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const pointedSchema = new Pointed(
+const pointedSchema = new Schema(
     {
         user: {
             type: Schema.Types.ObjectId,
