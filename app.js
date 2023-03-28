@@ -8,7 +8,7 @@ const cors = require('cors');
 // Routers require
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
-const bulletinRouter = require('./routes/bulletin')
+const bulletinsRouter = require('./routes/bulletins');
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 // routes intro
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/bulletins', bulletinRouter);
+app.use('/bulletins', bulletinsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -13,7 +13,7 @@ const bulletinSchema = new Schema (
             // //Lista de juegos
             // ]
         },
-        Campaign: {
+        campaign: {
             type: [Schema.Types.ObjectId],
             ref: 'Game',
             // enum: [
@@ -40,4 +40,6 @@ const bulletinSchema = new Schema (
     timestamps: true
 });
 
-module.exports = model("Bulletin", bulletinSchema);
+const Bulletin = model('Bulletin', bulletinSchema);
+
+module.exports = Bulletin;
