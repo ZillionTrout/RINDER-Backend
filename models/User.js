@@ -15,11 +15,18 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  role: {
+  Place: {
     type: String,
-    enum: ['user', 'admin'],
-    default: 'user'
-  }
+    default: "Mundodisco"
+  }, 
+    image: {
+      type: String,
+      default: ""//avatar por hacer,
+  },
+    description: {
+      type: String,
+      maxlenght: 150
+    }
 },
   {
     timestamps: true

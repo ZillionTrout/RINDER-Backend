@@ -91,7 +91,8 @@ router.post('/login', async (req, res, next) => {
 // @desc    GET logged in user
 // @route   GET /api/v1/auth/me
 // @access  Private
-router.get('/me', isAuthenticated, (req, res, next) => {
+router.get('/me', (req, res, next) => {
+  console.log(req.payload)
   // If JWT token is valid the payload gets decoded by the
   // isAuthenticated middleware and made available on `req.payload`
   console.log('Whose token is on the request:', req.payload);
@@ -100,14 +101,14 @@ router.get('/me', isAuthenticated, (req, res, next) => {
   res.status(200).json(req.payload);
 })
 
-router.post('/logout', (req, res, next) => {
-  req.session.destroy((err) => {
-    if (err) {
-      next(err)
-    } else {
-      res.redirect('/')
-    }
-  });
-})
+// router.post('/logout', (req, res, next) => {
+//   req.session.destroy((err) => {
+//     if (err) {
+//       next(err)
+//     } else {
+//       res.redirect('/')
+//     }
+//   });
+// })
 
 module.exports = router;

@@ -9,6 +9,8 @@ const cors = require('cors');
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const bulletinsRouter = require('./routes/bulletins');
+const profileRouter = require('./routes/profile');
+const mpRouter = require('./routes/messageprivate');
 
 const app = express();
 
@@ -26,7 +28,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/bulletins', bulletinsRouter);
-
+app.use('/profile', profileRouter);
+app.use('/messageprivate', mpRouter)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

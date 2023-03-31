@@ -4,13 +4,10 @@ const { Schema, model } = mongoose;
 const campaignSchema = new Schema (
     {
         game: {
-            type: Schema.Types.ObjectId,
-            ref: 'game'
+            type:String,
+            enum:["Anima", "D&D"]
         },
-        campaign: {
-                type: String,
-                enum: ['dungeonMaster', 'player'] 
-            }
+        
     },
     {
         timestamps: true 
