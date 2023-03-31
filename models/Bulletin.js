@@ -9,9 +9,8 @@ const bulletinSchema = new Schema (
         },
         game: {
             type: String,
-            // enum: [
-            // //Lista de juegos
-            // ]
+            enum: ['Dungeons&Dragons', 'Dungeons&Dragons 2', 'Dungeons&Dragons 3', 'Dungeons&Dragons 3.5', 'Dungeons&Dragons 4', 'Dungeons&Dragons 5', 'Dungeon World', 'Anima', 'Vampiro: La mascarada', 'Vampiro: Edad Oscura', 'Changelling', 'Hombrelobo', 'Ryuutama'
+            ]
         },
         campaign: {
             type: [Schema.Types.ObjectId],

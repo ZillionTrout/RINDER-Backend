@@ -2,30 +2,25 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 const Bulletin = require('../models/Bulletin')
+const Game = require('../models/Game')
 // Import the model
 
 // Place the array you want to seed
-const bulletins = [
+const games = [
   {     
-    game: "Dungeons&Dragons",
-    Role: "dungeonMaster",
-    Modality: "presential",
-    place: "Barcelona",
-    description: "Vamos a jugar juntos"
+    name: "Dungeons&Dragons",
+    image: ""
   },
   {
-    game: "Dungeons&Dragons",
-    Role: "dungeonMaster",
-    Modality: "presential",
-    place: "Madrid",
-    description: "Vamos a jugar juntos en Madrid"
+    name: "Anima",
+    image: ""
   }
 ];
 
 mongoose.connect(process.env.MONGO_URL)
   .then(x => console.log(`Connected to ${x.connection.name}`))
   .then(() => {
-    return Bulletin.create(bulletins);
+    return Game.create(games);
   })
   .then(() => {
     console.log('Seed done 🌱');
