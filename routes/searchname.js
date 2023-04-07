@@ -2,7 +2,11 @@ const router = require('express').Router();
 const User = require('../models/User');
 const { isAuthenticated, isAdmin } = require('../middlewares/jwt');
 
-router.get('/', async (req, res, next) => {
+// @desc    GET Search by name
+// @route   GET /searchname
+// @access  Private
+
+router.get('/', isAuthenticated, async (req, res, next) => {
     const {username} = req.body;
 try {
     usernameResult = await User.findOne({ username: { $in: username } }).populate('username');

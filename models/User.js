@@ -16,7 +16,7 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
-  Place: {
+  place: {
     type: String,
     default: "Mundodisco"
   }, 

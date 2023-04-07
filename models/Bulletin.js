@@ -7,28 +7,20 @@ const bulletinSchema = new Schema (
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
-        game: {
-            type: String,
-            enum: ['Dungeons&Dragons', 'Dungeons&Dragons 2', 'Dungeons&Dragons 3', 'Dungeons&Dragons 3.5', 'Dungeons&Dragons 4', 'Dungeons&Dragons 5', 'Dungeon World', 'Anima', 'Vampiro: La mascarada', 'Vampiro: Edad Oscura', 'Changelling', 'Hombrelobo', 'Ryuutama'
-            ]
-        },
         campaign: {
             type: [Schema.Types.ObjectId],
-            ref: 'Game',
-            // enum: [
-            // //Lista de campañanas según el juego
-            // ]
+            ref: 'Campaign',
         },
         Role: {
             type: String,
             enum: ['dungeonMaster', 'player']
         },
         Modality: {
-            type: [String],
+            type: String,
             enum: ['presential', 'online']
         },
         Place: {
-            type: [String]
+            type: String
         },
         Description: {
             type: [String],

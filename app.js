@@ -11,7 +11,7 @@ const authRouter = require('./routes/auth');
 const bulletinsRouter = require('./routes/bulletins');
 const profileRouter = require('./routes/profile');
 const gamesRouter = require ('./routes/games');
-const searchRoute = require ('./routes/searchname')
+const searchRoute = require ('./routes/searchname');
 const mpRouter = require('./routes/messageprivate');
 
 const app = express();

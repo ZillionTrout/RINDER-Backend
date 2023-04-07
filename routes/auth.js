@@ -91,7 +91,7 @@ router.post('/login', async (req, res, next) => {
 // @desc    GET logged in user
 // @route   GET /api/v1/auth/me
 // @access  Private
-router.get('/me', (req, res, next) => {
+router.get('/me', isAuthenticated, (req, res, next) => {
   console.log(req.payload)
   // If JWT token is valid the payload gets decoded by the
   // isAuthenticated middleware and made available on `req.payload`

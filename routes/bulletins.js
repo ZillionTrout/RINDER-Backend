@@ -5,7 +5,7 @@ const { isAuthenticated, isAdmin } = require('../middlewares/jwt');
 // @desc    All Bulletins
 // @route   GET /bulletins
 // @access  Private
-router.get('/', async (req, res, next) => {
+router.get('/', isAuthenticated, async (req, res, next) => {
     try {
         const bulletins = await Bulletin.find();
         res.status(200).json(bulletins);
@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 // @desc    Get one bulletin
 // @route   GET /bulletins/:bulletinId
 // @access  Private
-router.get("/:bulletinId", async (req, res, next) => {
+router.get("/:bulletinId", isAuthenticated, async (req, res, next) => {
     const {bulletinId} = req.params;
     try {
         const bulletin = await Bulletin.findById(bulletinId);
@@ -30,7 +30,7 @@ router.get("/:bulletinId", async (req, res, next) => {
 // @desc    Create new bulletin
 // @route   POST /bulletin
 // @access  Private
-router.post("/", async (req, res, next) => {
+router.post("/", isAuthenticated, async (req, res, next) => {
     const { userId, game, campaign, role, modality, place, description } = req.body;
     if (!userId|| !game || !campaign|| !role|| !modality|| !place || !description) {
         res.status(400).json({ message: "Rellena todos los datos para poder crear tu anuncio" });
@@ -47,7 +47,7 @@ router.post("/", async (req, res, next) => {
 // @desc    Edit a bulletin
 // @route   PUT /bulletins/:bulletinId
 // @access  Private
-router.put("/:bulletinId", async (req, res, next) => {
+router.put("/:bulletinId", isAuthenticated, async (req, res, next) => {
     const {bulletinId} = req.params;
     const {  userId, game, campaign, role, modality, place, description } = req.body;
     if (
@@ -68,7 +68,7 @@ router.put("/:bulletinId", async (req, res, next) => {
 // @desc    Deletes a bulletin
 // @route   DELETE /bulletins/:bulletinId
 // @access  Private
-router.delete("/:bulletinId", async (req, res, next) => {
+router.delete("/:bulletinId", isAuthenticated, async (req, res, next) => {
     const {bulletinId} = req.params;
     try {
         const deletedBulletin = await Bulletin.findByIdAndDelete(bulletinId);
