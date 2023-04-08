@@ -23,9 +23,9 @@ router.get("/", isAuthenticated, async (req, res, next) => {
 
 router.put("/edit", isAuthenticated, async (req, res, next) => {
     const userId = req.payload._id;
-    const { username, place, image, description } = req.body; 
+    const { place, rolling, games, description } = req.body; 
     try {
-        await User.findByIdAndUpdate(userId, {username, place, image, description}, {new: true});
+        await User.findByIdAndUpdate(userId, {place, rolling, games, description}, {new: true});
         res.status(200).json({message: "¡Editado!"})
     } catch (error) {
         next(error)

@@ -31,8 +31,8 @@ router.get("/:bulletinId", isAuthenticated, async (req, res, next) => {
 // @route   POST /bulletin
 // @access  Private
 router.post("/", isAuthenticated, async (req, res, next) => {
-    const { userId, game, campaign, role, modality, place, description } = req.body;
-    if (!userId|| !game || !campaign|| !role|| !modality|| !place || !description) {
+    const { game, campaign, role, modality, place, description } = req.body;
+    if ( !game || !campaign|| !role|| !modality|| !place || !description) {
         res.status(400).json({ message: "Rellena todos los datos para poder crear tu anuncio" });
         return;
     }
