@@ -40,7 +40,7 @@ router.post("/", isAuthenticated, async (req, res, next) => {
         const newBulletin = await Bulletin.create(req.body);
         res.status(201).json(newBulletin);
     } catch (error) {
-        console.error(error);
+        next(error);
     }
 });
 
@@ -49,14 +49,6 @@ router.post("/", isAuthenticated, async (req, res, next) => {
 // @access  Private
 router.put("/:bulletinId", isAuthenticated, async (req, res, next) => {
     const {bulletinId} = req.params;
-    const {  userId, game, campaign, role, modality, place, description } = req.body;
-    if (
-        !userId|| !game || !campaign|| !role|| !modality|| !place || !description) {
-        res
-            .status(400)
-            .json({ message: "Rellena todos los campos para poder editar tu anuncio" });
-        return;
-    }
     try {
         const response = await Bulletin.findByIdAndUpdate(bulletinId, req.body, {new: true});
         res.status(204).json(response);

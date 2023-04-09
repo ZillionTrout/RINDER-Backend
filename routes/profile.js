@@ -6,6 +6,7 @@ const { isAuthenticated, isAdmin } = require('../middlewares/jwt');
 // @desc Profile View
 // @route GET /profile
 // @access Private
+
 router.get("/", isAuthenticated, async (req, res, next) => {
     const userId  = req.payload;
     try {
@@ -51,6 +52,7 @@ router.delete("/:userId", isAuthenticated, async (req, res, next) => {
 // @desc    Gets another user profile 
 // @route   GET /profile/:userId
 // @access  Private
+
 router.get("/:userId", isAuthenticated, async (req, res, next) => {
     const {userId} = req.params;
     try {
@@ -62,23 +64,3 @@ router.get("/:userId", isAuthenticated, async (req, res, next) => {
 });
 
 module.exports = router;
-
-
-//RUTA DE DELETE (NO FUNCIONA)
-// router.delete("/:userId", async (req, res, next) => {
-//     const userId = req.payload;
-// try {
-//     await Bulletin.deleteMany({ userId: User._id });
-//     await User.deleteOne({ userId: User._id });
-//     req.session.destroy((err) => {
-//         if (err) {
-//             next(err)
-//         } else {
-//             res.clearCookie('inked-in-cookie');
-//             res.status(201).json(userId)
-//         }
-//     });
-// } catch (error) {
-//     next(error);
-// }
-// });

@@ -9,8 +9,7 @@ const bulletinSchema = new Schema (
         },
         game: {
             type: String,
-            enum: ['Dungeons&Dragons', 'Dungeons&Dragons 2', 'Dungeons&Dragons 3', 'Dungeons&Dragons 3.5', 'Dungeons&Dragons 4', 'Dungeons&Dragons 5', 'Dungeon World', 'Anima', 'Vampiro: La mascarada', 'Vampiro: Edad Oscura', 'Changelling', 'Hombrelobo', 'Ryuutama'
-            ]
+            // enum: ['Dungeons&Dragons', 'Vampiro', 'Changelling', 'Hombrelobo', 'Pathfinder', 'Custom']
         },
         campaign: { 
             type: String
@@ -25,7 +24,7 @@ const bulletinSchema = new Schema (
             type: String
         },
         description: {
-            type: [String],
+            type: String,
             maxlength: 120 //revisar más adelante
         },
     },    
