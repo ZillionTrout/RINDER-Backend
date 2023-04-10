@@ -53,7 +53,7 @@ router.put("/:bulletinId", isAuthenticated, async (req, res, next) => {
         const response = await Bulletin.findByIdAndUpdate(bulletinId, req.body, {new: true});
         res.status(204).json(response);
     } catch (error) {
-        console.error(error);
+        next(error);
     }
 });
 

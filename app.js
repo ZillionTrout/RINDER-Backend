@@ -10,8 +10,8 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const bulletinsRouter = require('./routes/bulletins');
 const profileRouter = require('./routes/profile');
-const gamesRouter = require ('./routes/games');
 const searchRoute = require ('./routes/searchname');
+const pointedRoute = require ('./routes/pointed')
 const mpRouter = require('./routes/messageprivate');
 
 const app = express();
@@ -31,8 +31,8 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/bulletins', bulletinsRouter);
 app.use('/profile', profileRouter);
-app.use('/games', gamesRouter);
 app.use('/search', searchRoute)
+app.use('/pointed', pointedRoute)
 app.use('/messageprivate', mpRouter)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
