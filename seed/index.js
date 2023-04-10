@@ -6,16 +6,6 @@ const Game = require('../models/Game')
 // Import the model
 
 // Place the array you want to seed
-const games = [
-  {     
-    name: "Dungeons&Dragons",
-    image: ""
-  },
-  {
-    name: "Anima",
-    image: ""
-  }
-];
 
 mongoose.connect(process.env.MONGO_URL)
   .then(x => console.log(`Connected to ${x.connection.name}`))

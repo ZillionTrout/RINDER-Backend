@@ -16,13 +16,18 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
+  avatar: {
+    type: String
+},
   place: {
     type: String,
     default: "Mundodisco"
   }, 
-    image: {
+    rolling: {
       type: String,
-      default: ""//avatar por hacer,
+  },
+  games: {
+    type: String
   },
     description: {
       type: String,

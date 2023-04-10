@@ -22,11 +22,11 @@ router.get("/", isAuthenticated, async (req, res, next) => {
 // @route PUT /profile
 // @access Private
 
-router.put("/edit", isAuthenticated, async (req, res, next) => {
+router.put("/edit/:userId", isAuthenticated, async (req, res, next) => {
     const userId = req.payload._id;
-    const { place, rolling, games, description } = req.body; 
+    const { avatar, place, rolling, games, description } = req.body; 
     try {
-        await User.findByIdAndUpdate(userId, {place, rolling, games, description}, {new: true});
+        await User.findByIdAndUpdate(userId, {avatar, place, rolling, games, description}, {new: true});
         res.status(200).json({message: "¡Editado!"})
     } catch (error) {
         next(error)
