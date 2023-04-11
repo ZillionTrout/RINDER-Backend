@@ -9,7 +9,6 @@ const bulletinSchema = new Schema (
         },
         game: {
             type: String,
-            // enum: ['Dungeons&Dragons', 'Vampiro', 'Changelling', 'Hombrelobo', 'Pathfinder', 'Custom']
         },
         campaign: { 
             type: String
