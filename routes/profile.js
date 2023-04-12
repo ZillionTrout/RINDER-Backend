@@ -8,12 +8,11 @@ const { isAuthenticated, isAdmin } = require('../middlewares/jwt');
 // @access Private
 
 router.get("/", isAuthenticated, async (req, res, next) => {
-    const {_id}  = req.payload;
+    const { _id} = req.payload;
     try {
-        const user = await User.find(_id);
-        const userBulletins = await Bulletin.find(_id);
-        res.status(200).json({user, userBulletins});
-        console.log(user)
+        const user = await User.findOne({ _id }); 
+        res.status(200).json({ user });
+        console.log(user);
     } catch (error) {
         next(error);
     }
