@@ -3,9 +3,12 @@ const { Schema, model } = mongoose;
 
 const bulletinSchema = new Schema (
     {
-        userId: {
+        user: {
             type: Schema.Types.ObjectId,
             ref: 'User'
+        },
+        image: {
+            type: String
         },
         game: {
             type: String,

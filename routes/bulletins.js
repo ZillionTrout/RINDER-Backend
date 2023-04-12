@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const mongoose = require('mongoose');
 const Bulletin = require('../models/Bulletin');
 const { isAuthenticated, isAdmin } = require('../middlewares/jwt');
 
@@ -30,27 +31,25 @@ router.get("/:bulletinId", isAuthenticated, async (req, res, next) => {
 // @desc    Get user bulletins
 // @route   GET /bulletins/:userId
 // @access  Private
-router.get("/:userId", isAuthenticated, async (req, res, next) => {
-    const {userId} = req.body;
+router.get("/user/:userId", isAuthenticated, async (req, res, next) => {
+    const { userId } = req.params;
     try {
-        const userBulletins = await Bulletin.findById(userId);
+        const userBulletins = await Bulletin.find({ user: mongoose.Types.ObjectId(userId) });
         res.status(200).json(userBulletins);
+        console.log(userBulletins)
     } catch (error) {
         console.error(error);
     }
 });
 
+
 // @desc    Create new bulletin
 // @route   POST /bulletin
 // @access  Private
 router.post("/", isAuthenticated, async (req, res, next) => {
-    const { userId, game, campaign, role, modality, place, description } = req.body;
-    // if ( userId || !game || !campaign|| !role|| !modality|| !place || !description) {
-    //     res.status(400).json({ message: "Rellena todos los datos para poder crear tu anuncio" });
-    //     return;
-    // }
+    const { user: userId, image, game, campaign, role, modality, place, description } = req.body;
     try {
-        await Bulletin.create({ user: userId, game, campaign, role, modality, place, description });
+        await Bulletin.create({ user: userId, image, game, campaign, role, modality, place, description });
         res.status(200).json({message: 'Hecho!'});
     } catch (error) {
         next(error);
