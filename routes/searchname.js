@@ -11,8 +11,7 @@ router.post('/', isAuthenticated, async (req, res, next) => {
     try {
         const usernameResult = await User.find({ username }); 
         res.status(200).json(usernameResult);
-        console.log(usernameResult);
-    } catch (error) {
+        } catch (error) {
         next(error);
     }
 });

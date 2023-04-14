@@ -2,11 +2,14 @@ const { Schema, model } = require('mongoose');
 
 const pointedSchema = new Schema(
     {
-        user: {
+        userId: {
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
-        bulletin: {
+        username: {
+            type: String
+        },
+        bulletinId: {
             type: Schema.Types.ObjectId,
             ref: 'Bulletin'
         },

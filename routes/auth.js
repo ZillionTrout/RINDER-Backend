@@ -101,14 +101,4 @@ router.get('/me', isAuthenticated, (req, res, next) => {
   res.status(200).json(req.payload);
 })
 
-// router.post('/logout', (req, res, next) => {
-//   req.session.destroy((err) => {
-//     if (err) {
-//       next(err)
-//     } else {
-//       res.redirect('/')
-//     }
-//   });
-// })
-
 module.exports = router;

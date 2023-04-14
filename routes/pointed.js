@@ -2,10 +2,23 @@ const router = require('express').Router();
 const Pointed = require ('../models/Pointed');
 const { isAuthenticated, isAdmin } = require('../middlewares/jwt');
 
+// @desc Pointed List
+// @route GET /pointed/list
+// @access Private
+router.get('/list/:bulletinId', async (req, res, next) => {
+    const { bulletinId } = req.params;
+    try {
+        const pointedList = await Pointed.find({ bulletin: bulletinId });
+        res.status(200).json(pointedList);
+        } catch (error) {
+        next(error);
+        }
+    });
+
 // @desc    All user's Pointeds 
-// @route   GET /pointed
+// @route   GET /pointed/user
 // @access  Private
-router.get('/', isAuthenticated, async (req, res, next) => {
+router.get('/user', isAuthenticated, async (req, res, next) => {
     const { userId }= req.body;
     const { pointedId } = req.params;
     try {
@@ -20,15 +33,15 @@ router.get('/', isAuthenticated, async (req, res, next) => {
 // @ route POST /pointed
 // @ access Private
 router.post('/:bulletinId', isAuthenticated, async (req, res, next) => {
-    const {userId }= req.body;
+    const userId = req.payload._id;
     const { bulletinId } = req.params;
     try {
-        const isPointed = await Pointed.findOne({ user: userId, bulletin: bulletinId });
+        const isPointed = await Pointed.findOne({ userId, bulletinId });
             if (isPointed) {
-                res.status(200).json({message: 'Ya estabas apuntado'})
+                res.status(200).json(isPointed)
             } else {
-                await Pointed.create({ user: userId, bulletin: bulletinId });
-                res.status(200).json({message: 'Pointed!'})
+                await Pointed.create({ userId, bulletinId });
+                res.status(200).json(Pointed)
             }
         } catch (error) {
             next(error)

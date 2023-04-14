@@ -3,9 +3,12 @@ const { Schema, model } = mongoose;
 
 const bulletinSchema = new Schema (
     {
-        user: {
+        userId: {
             type: Schema.Types.ObjectId,
             ref: 'User'
+        },
+        username: {
+            type: String
         },
         image: {
             type: String
@@ -27,7 +30,7 @@ const bulletinSchema = new Schema (
         },
         description: {
             type: String,
-            maxlength: 120 //revisar más adelante
+            maxlength: 200
         },
     },    
     {

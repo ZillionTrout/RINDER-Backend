@@ -12,8 +12,7 @@ router.get("/", isAuthenticated, async (req, res, next) => {
     try {
         const user = await User.findOne({ _id }); 
         res.status(200).json({ user });
-        console.log(user);
-    } catch (error) {
+        } catch (error) {
         next(error);
     }
 });
@@ -26,7 +25,7 @@ router.put("/edit/:userId", isAuthenticated, async (req, res, next) => {
     const userId = req.payload._id;
     const { avatar, place, rolling, games, description } = req.body; 
     try {
-        await User.findByIdAndUpdate(userId, {avatar, place, rolling, games, description}, {new: true});
+        await User.findByIdAndUpdate(userId, {avatar, place, rolling, games, description});
         res.status(200).json({message: "¡Editado!"})
     } catch (error) {
         next(error)
@@ -53,7 +52,7 @@ router.delete("/:userId", isAuthenticated, async (req, res, next) => {
 // @route   GET /profile/:userId
 // @access  Private
 
-router.get("/:userId", isAuthenticated, async (req, res, next) => {
+router.get("/other/:userId", isAuthenticated, async (req, res, next) => {
     const {userId} = req.params;
     try {
     const otherUser = await User.findById(userId);

@@ -8,7 +8,7 @@ const { isAuthenticated, isAdmin } = require('../middlewares/jwt');
 // @access  Private
 router.get('/', isAuthenticated, async (req, res, next) => {
     try {
-        const bulletins = await Bulletin.find();
+        const bulletins = await Bulletin.find().populate();
         res.status(200).json(bulletins);
     } catch (error) {
         next(error)
@@ -36,7 +36,6 @@ router.get("/user/:userId", isAuthenticated, async (req, res, next) => {
     try {
         const userBulletins = await Bulletin.find({ user: mongoose.Types.ObjectId(userId) });
         res.status(200).json(userBulletins);
-        console.log(userBulletins)
     } catch (error) {
         console.error(error);
     }
@@ -47,9 +46,9 @@ router.get("/user/:userId", isAuthenticated, async (req, res, next) => {
 // @route   POST /bulletin
 // @access  Private
 router.post("/", isAuthenticated, async (req, res, next) => {
-    const { user: userId, image, game, campaign, role, modality, place, description } = req.body;
+    const { userId: userId, username, image, game, campaign, role, modality, place, description } = req.body;
     try {
-        await Bulletin.create({ user: userId, image, game, campaign, role, modality, place, description });
+        await Bulletin.create({ userId: userId, username, image, game, campaign, role, modality, place, description });
         res.status(200).json({message: 'Hecho!'});
     } catch (error) {
         next(error);
@@ -59,11 +58,12 @@ router.post("/", isAuthenticated, async (req, res, next) => {
 // @desc    Edit a bulletin
 // @route   PUT /bulletins/:bulletinId
 // @access  Private
-router.put("/:bulletinId", isAuthenticated, async (req, res, next) => {
+router.put("/edit/:bulletinId", isAuthenticated, async (req, res, next) => {
     const {bulletinId} = req.params;
     try {
         const response = await Bulletin.findByIdAndUpdate(bulletinId, req.body, {new: true});
-        res.status(204).json(response);
+        // Enviar una respuesta vacía con código de estado 204
+        res.status(204).send();
     } catch (error) {
         next(error);
     }
