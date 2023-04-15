@@ -7,7 +7,7 @@ const { isAuthenticated, isAdmin } = require('../middlewares/jwt');
 // @route GET /profile
 // @access Private
 
-router.get("/", isAuthenticated, async (req, res, next) => {
+router.get("/:userId", isAuthenticated, async (req, res, next) => {
     const { _id} = req.payload;
     try {
         const user = await User.findOne({ _id }); 
