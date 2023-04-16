@@ -46,10 +46,10 @@ router.get("/user/:userId", isAuthenticated, async (req, res, next) => {
 // @route   POST /bulletin
 // @access  Private
 router.post("/", isAuthenticated, async (req, res, next) => {
-    const { userId: userId, username, image, game, campaign, role, modality, place, description } = req.body;
+    const { userId, username, image, game, campaign, role, modality, place, description } = req.body;
     try {
-        await Bulletin.create({ userId: userId, username, image, game, campaign, role, modality, place, description });
-        res.status(200).json({message: 'Hecho!'});
+        await Bulletin.create({ userId, username, image, game, campaign, role, modality, place, description });
+        res.status(200).json({ message: 'Hecho!' });
     } catch (error) {
         next(error);
     }

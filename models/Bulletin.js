@@ -15,15 +15,18 @@ const bulletinSchema = new Schema (
         },
         game: {
             type: String,
+            enum: ['Dungeons&Dragons', 'Vampiro', 'Hombrelobo', 'Changeling', 'Pathfinder', 'Custom']
         },
         campaign: { 
             type: String
         },
         role: {
-            type: String
+            type: String,
+            enum: ['Master', 'Player']
         },
         modality: {
-            type: String
+            type: String,
+            enum: ['Presencial', 'Online']
         },
         place: {
             type: String
