@@ -34,7 +34,7 @@ router.get("/:bulletinId", isAuthenticated, async (req, res, next) => {
 router.get("/user/:userId", isAuthenticated, async (req, res, next) => {
     const { userId } = req.params;
     try {
-        const userBulletins = await Bulletin.find({ user: mongoose.Types.ObjectId(userId) });
+        const userBulletins = await Bulletin.find(userId);
         res.status(200).json(userBulletins);
     } catch (error) {
         console.error(error);

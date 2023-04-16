@@ -16,13 +16,12 @@ router.get('/list/:bulletinId', async (req, res, next) => {
     });
 
 // @desc    All user's Pointeds 
-// @route   GET /pointed/user
+// @route   GET /pointed/user/userId
 // @access  Private
-router.get('/user', isAuthenticated, async (req, res, next) => {
-    const { userId }= req.body;
-    const { pointedId } = req.params;
+router.get('/user/:userId', isAuthenticated, async (req, res, next) => {
+    const { userId }= req.params;
     try {
-        const MyPointed = await Pointed.find({ user: userId, pointed: pointedId }).populate('bulletin');
+        const MyPointed = await Pointed.find({userId});
             res.status(200).json(MyPointed);
     } catch (error) {
         next(error);
