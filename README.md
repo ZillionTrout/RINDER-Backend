@@ -1,8 +1,8 @@
-# Project's name REST API
+# RINDER REST API
 
 ## Description
 
-This is a the backend repository for the React application `app's name`.
+This is a the backend repository for the React application `RINDER`.
 
 ---
 
@@ -48,15 +48,25 @@ Users in the database have the following properties:
 {
   "username": String,
   "email": String,
-  "hashedPassword": String
+  "hashedPassword": String,
+  "avatar": String,
+  "place": String,
+  "rolling": String,
+  "games": String,
+  "description": String
 }
 ```
 
 ### Bulletin
 
+Bulletins in the database have the following properties:
+
 ```js
 {
+  "userId": Schema.Types.ObjectId,
+  ref: 'User',
   "username": String,
+  "image": String,
   "game": String,
   "campaign": String,
   "role": String,
@@ -66,21 +76,49 @@ Users in the database have the following properties:
 }
 ```
 
+### Pointed
+
+Pointed in the database have the following properties:
+
+```js
+{
+  "userId": Schema.Types.ObjectId,
+  ref: 'User'
+  "username": String,
+  "bulletinId": Schema.Types.ObjectId,
+  ref: 'Bulletin'
+}
+```
+
 ---
 
 ## API endpoints and usage
 
-| Action             | Method | Endpoint            | Req.body                      | Private/Public |
-| ------------------ | ------ | ------------------- | ----------------------------- | -------------- |
-| SIGN UP user       | POST   | /api/v1/auth/signup | { username, email, password } | Public         |
-| LOG IN user        | POST   | /api/v1/auth/login  | { email, password }           | Public         |
-| GET logged in user | GET    | /api/v1/auth/me     |                               | Private        |
+| Action                 | Method | Endpoint                    | Req.body                                                                        | Private/Public |
+| ---------------------- | ------ | --------------------------- | ------------------------------------------------------------------------------- | -------------- |
+| SIGN UP user           | POST   | /auth/signup                | { username, email, password }                                                   | Public         |
+| LOG IN user            | POST   | /auth/login                 | { email, password }                                                             | Public         |
+| GET logged in user     | GET    | /auth/me                    |                                                                                 | Private        |
+| GET All bulletins      | GET    | /bulletins                  |                                                                                 | Private        |
+| GET One bulletin       | GET    | bulletins/:bulletinId       |                                                                                 | Private        |
+| GET User bulletins     | GET    | bulletins/:userId           |                                                                                 | Private        |
+| POST New bulletin      | POST   | /bulletins/new              | { userId, username, image, game, campaign, role, modality, place, description } | Private        |
+| PUT Edit a bulletin    | PUT    | /bulletins/edit/:bulletinId |                                                                                 | Private        |
+| DELETE Delete bulletin | DELETE | /bulletins/:bulletinId      |                                                                                 | Private        |
+| GET Pointed List       | GET    | /pointed/list/:bulletinId   |                                                                                 | Private        |
+| GET User Pointed       | GET    | /pointed/user/:userId       |                                                                                 | Private        |
+| POST Point bulletin    | POST   | /pointed/:bulletinId        |                                                                                 | Private        |
+| DELETE Delete point    | DELETE | /:bulletin                  | { userId }                                                                      | Private        |
+| GET Profile view       | GET    | /profile/:userId            |                                                                                 | Private        |
+| PUT Edit profile       | GET    | /profile/edit/:userId       | { avatar, place, rolling, games, description }                                  | Private        |
+| GET view other profile | GET    | /profile/other/:userId      |                                                                                 | Private        |
+| POST Search username   | POST   | /searchname                 | { username }                                                                    | Private        |
 
 ---
 
 ## Useful links
 
-- [Presentation slides]()
-- [Frontend repository]()
-- [Frontend deploy]()
-- [Deployed REST API]()
+- [Presentation slides](https://slides.com/d/atB2mZw/live)
+- [Frontend repository](https://github.com/ZillionTrout/RINDER-Frontend)
+- [Frontend deploy](https://rollrinder.netlify.app/)
+- [Deployed REST API](https://rinder.fly.dev/)

@@ -16,7 +16,7 @@ router.get('/', isAuthenticated, async (req, res, next) => {
 });
 
 // @desc    Get one bulletin
-// @route   GET /bulletins/:bulletinId
+// @route   GET /:bulletinId
 // @access  Private
 router.get("/:bulletinId", isAuthenticated, async (req, res, next) => {
     const {bulletinId} = req.params;
@@ -29,7 +29,7 @@ router.get("/:bulletinId", isAuthenticated, async (req, res, next) => {
 });
 
 // @desc    Get user bulletins
-// @route   GET /bulletins/:userId
+// @route   GET /:userId
 // @access  Private
 router.get("/user/:userId", isAuthenticated, async (req, res, next) => {
     const { userId } = req.params;
@@ -43,9 +43,9 @@ router.get("/user/:userId", isAuthenticated, async (req, res, next) => {
 
 
 // @desc    Create new bulletin
-// @route   POST /bulletin
+// @route   POST /new
 // @access  Private
-router.post("/", isAuthenticated, async (req, res, next) => {
+router.post("/new", isAuthenticated, async (req, res, next) => {
     const { userId, username, image, game, campaign, role, modality, place, description } = req.body;
     try {
         await Bulletin.create({ userId, username, image, game, campaign, role, modality, place, description });
@@ -56,7 +56,7 @@ router.post("/", isAuthenticated, async (req, res, next) => {
 });
 
 // @desc    Edit a bulletin
-// @route   PUT /bulletins/:bulletinId
+// @route   PUT /edit/:bulletinId
 // @access  Private
 router.put("/edit/:bulletinId", isAuthenticated, async (req, res, next) => {
     const {bulletinId} = req.params;
@@ -70,7 +70,7 @@ router.put("/edit/:bulletinId", isAuthenticated, async (req, res, next) => {
 });
 
 // @desc    Deletes a bulletin
-// @route   DELETE /bulletins/:bulletinId
+// @route   DELETE /:bulletinId
 // @access  Private
 router.delete("/:bulletinId", isAuthenticated, async (req, res, next) => {
     const {bulletinId} = req.params;

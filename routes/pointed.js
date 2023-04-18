@@ -29,7 +29,7 @@ router.get('/user/:userId', isAuthenticated, async (req, res, next) => {
 });
 
 // @ desc Point to bulletin
-// @ route POST /pointed
+// @ route POST /pointed/bulletinId
 // @ access Private
 router.post('/:bulletinId', isAuthenticated, async (req, res, next) => {
     const userId = req.payload._id;

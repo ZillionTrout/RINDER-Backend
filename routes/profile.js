@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const Bulletin = require('../models/Bulletin');
+const Pointed = require('../models/Pointed')
 const { isAuthenticated, isAdmin } = require('../middlewares/jwt');
 
 // @desc Profile View
@@ -29,22 +30,6 @@ router.put("/edit/:userId", isAuthenticated, async (req, res, next) => {
         res.status(200).json({message: "¡Editado!"})
     } catch (error) {
         next(error)
-    }
-});
-
-// @desc Delete profile
-// @route DELETE /profile
-// @access Private
-
-router.delete("/:userId", isAuthenticated, async (req, res, next) => {
-    const {userId} = req.params;
-    try {
-        const deletedUser =
-        await User.findByIdAndDelete(userId);
-        await Bulletin.findByIdAndDelete(userId);
-            res.status(201).json(deletedUser);
-    } catch (error) {
-        console.error(error);
     }
 });
 
