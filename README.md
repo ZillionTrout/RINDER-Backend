@@ -118,7 +118,7 @@ Pointed in the database have the following properties:
 
 ## Useful links
 
-- [Presentation slides](https://slides.com/d/atB2mZw/live)
+- [Presentation slides](https://slides.com/estefaniaegeacalcena/deck-86220e)
 - [Frontend repository](https://github.com/ZillionTrout/RINDER-Frontend)
 - [Frontend deploy](https://rollrinder.netlify.app/)
 - [Deployed REST API](https://rinder.fly.dev/)
